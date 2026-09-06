@@ -1,16 +1,45 @@
-export type NavLink = {
+export type NavLeaf = {
   label: string;
   href: string;
 };
 
+export type NavGroup = {
+  label: string;
+  items: NavLeaf[];
+};
+
+export type NavEntry = NavLeaf | NavGroup;
+
+export function isNavGroup(entry: NavEntry): entry is NavGroup {
+  return "items" in entry;
+}
+
 /**
- * Header 내비게이션.
- * Blog는 MVP 2차 구현 범위라 페이지가 아직 없으므로, 실제로 만들어질 때 추가한다.
+ * Header / Footer 공통 내비게이션.
+ * 상위 항목은 그룹(드롭다운) 또는 단일 링크이며, Contact는 CTA로만 노출한다.
  */
-export const navLinks: NavLink[] = [
-  { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Process", href: "/process" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+export const navEntries: NavEntry[] = [
+  {
+    label: "서비스",
+    items: [
+      { label: "홈페이지 제작", href: "/services#website" },
+      { label: "유지보수", href: "/services#maintenance" },
+      { label: "SEO", href: "/services#seo" },
+      { label: "비즈니스 기능", href: "/services#reservation" },
+      { label: "AI & 자동화", href: "/services#ai" },
+    ],
+  },
+  { label: "포트폴리오", href: "/portfolio" },
+  {
+    label: "회사소개",
+    items: [
+      { label: "회사 소개", href: "/about" },
+      { label: "진행 방식", href: "/process" },
+    ],
+  },
 ];
+
+/** 평면 링크 목록이 필요한 곳(모바일 메뉴 등)에서 사용한다. */
+export const navLinks: NavLeaf[] = navEntries.flatMap((entry) =>
+  isNavGroup(entry) ? entry.items : [entry]
+);

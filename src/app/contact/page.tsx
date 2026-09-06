@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <Section className="pb-24">
-      <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+      <Container className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-14">
         <div className="flex flex-col gap-4">
           <span className="text-small font-medium text-primary">Contact</span>
           <h1 className="text-h1 font-semibold text-foreground text-balance">

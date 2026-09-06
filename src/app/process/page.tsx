@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { buttonVariants } from "@/components/ui/button";
 import { processSteps, clientPreparationItems } from "@/data/process";
 
 export const metadata: Metadata = {
@@ -74,17 +72,6 @@ export default function ProcessPage() {
               </li>
             ))}
           </ul>
-        </Container>
-      </Section>
-
-      <Section>
-        <Container className="flex flex-col items-center gap-6 text-center">
-          <h2 className="text-h2 font-semibold text-foreground">
-            프로젝트를 시작할 준비가 되셨나요?
-          </h2>
-          <Link href="/contact" className={buttonVariants({ size: "lg" })}>
-            상담하기
-          </Link>
         </Container>
       </Section>
     </>

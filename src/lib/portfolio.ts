@@ -1,7 +1,16 @@
 import { and, asc, desc, eq, inArray, ne } from "drizzle-orm";
-import { db } from "@/index";
+import { db, MissingDatabaseUrlError } from "@/index";
 import { portfolioImageTable, portfolioTable } from "@/db/schema";
 import type { PortfolioCategory } from "@/lib/constants";
+
+/**
+ * DB 조회 실패를 로그로 남긴다.
+ * DATABASE_URL 미설정(로컬 프론트 작업 등)은 의도된 빈 상태이므로 로그를 건너뛴다.
+ */
+function logDbError(context: string, error: unknown) {
+  if (error instanceof MissingDatabaseUrlError) return;
+  console.error(context, error);
+}
 
 export type PortfolioListItem = typeof portfolioTable.$inferSelect & {
   coverImageUrl: string | null;
@@ -62,7 +71,7 @@ export async function getPublishedPortfolios(
 
     return await attachCoverImages(rows);
   } catch (error) {
-    console.error("[getPublishedPortfolios] failed to load portfolios", error);
+    logDbError("[getPublishedPortfolios] failed to load portfolios", error);
     return [];
   }
 }
@@ -90,7 +99,7 @@ export async function getPortfolioBySlug(slug: string) {
 
     return { portfolio, images };
   } catch (error) {
-    console.error("[getPortfolioBySlug] failed to load portfolio", error);
+    logDbError("[getPortfolioBySlug] failed to load portfolio", error);
     return null;
   }
 }
@@ -119,7 +128,7 @@ export async function getRelatedPortfolios(
 
     return await attachCoverImages(rows);
   } catch (error) {
-    console.error("[getRelatedPortfolios] failed to load related portfolios", error);
+    logDbError("[getRelatedPortfolios] failed to load related portfolios", error);
     return [];
   }
 }

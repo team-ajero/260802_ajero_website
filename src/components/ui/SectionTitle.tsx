@@ -27,7 +27,7 @@ export function SectionTitle({
       )}
     >
       {eyebrow && (
-        <span className="text-small font-medium tracking-wide text-primary">
+        <span className="text-small font-medium tracking-wide text-accent-blue">
           {eyebrow}
         </span>
       )}
