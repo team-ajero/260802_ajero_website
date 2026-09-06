@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
 import { PortfolioCard } from "@/components/portfolio/PortfolioCard";
 import { getPortfolioBySlug, getRelatedPortfolios } from "@/lib/portfolio";
 import { parseContentSections } from "@/lib/content";
@@ -130,17 +128,6 @@ export default async function PortfolioDetailPage({
           </Container>
         </Section>
       )}
-
-      <Section>
-        <Container className="flex flex-col items-center gap-6 text-center">
-          <h2 className="text-h2 font-semibold text-foreground">
-            비슷한 프로젝트를 계획하고 계신가요?
-          </h2>
-          <Link href="/contact" className={buttonVariants({ size: "lg" })}>
-            상담하기
-          </Link>
-        </Container>
-      </Section>
     </>
   );
 }

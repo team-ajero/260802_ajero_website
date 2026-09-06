@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { buttonVariants } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "About",
@@ -93,17 +91,6 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
-        </Container>
-      </Section>
-
-      <Section muted>
-        <Container className="flex flex-col items-center gap-6 text-center">
-          <h2 className="max-w-xl text-h2 font-semibold text-foreground text-balance">
-            AJERO와 함께 사업에 필요한 웹을 만들어보세요.
-          </h2>
-          <Link href="/contact" className={buttonVariants({ size: "lg" })}>
-            상담하기
-          </Link>
         </Container>
       </Section>
     </>

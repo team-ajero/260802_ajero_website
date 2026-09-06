@@ -3,6 +3,15 @@
  * DB 컬럼은 VARCHAR이므로 값 검증은 애플리케이션 레이어(Zod)에서 담당한다.
  */
 
+/**
+ * 공개 채널 / 연락처. Footer 등에서 사용한다.
+ * kmongUrl은 확정된 채널이지만 정확한 스토어 주소가 아직 전달되지 않아 도메인 루트로 둔다. (교체 필요)
+ */
+export const SITE_CONTACT = {
+  email: "ajero2608@gmail.com",
+  kmongUrl: "https://kmong.com",
+} as const;
+
 export const PORTFOLIO_CATEGORIES = [
   "CORPORATE",
   "INTERIOR",
