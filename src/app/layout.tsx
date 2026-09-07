@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CtaBand } from "@/components/layout/CtaBand";
 import { FloatingActions } from "@/components/layout/FloatingActions";
 import { ScrollReveal } from "@/components/layout/ScrollReveal";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,6 +19,8 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const siteTitle = "AJERO | 브랜드와 비즈니스를 위한 웹사이트 제작";
 const siteDescription =
@@ -52,6 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <FloatingActions />
         <ScrollReveal />
+        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>
   );
